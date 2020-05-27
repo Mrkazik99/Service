@@ -21,6 +21,7 @@
             require_once("checkErrors.php");
         ?>
         <div id="main-container">
+            kurwa mać, jebane gónwo !!!
         </div>
     </body>
 
