@@ -21,7 +21,7 @@
             require_once("checkErrors.php");
         ?>
         <div id="main-container">
-            poprawka
+            poprawka1231224121231
         </div>
     </body>
 
