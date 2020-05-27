@@ -1,0 +1,102 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="/serwis/assets/js/sweetalerts.js"></script>
+        <script>
+            function clearId() {
+                document.getElementById("customer-choice").value="";
+            }
+            function choose(el) {
+                if(el.value>0){
+                    var list = document.getElementById("customer-name").childNodes;
+                    var phoneNumber = list[el.value].innerHTML;
+                    phoneNumber = phoneNumber.replace(/(\r\n|\n|\r| )/gm, "");
+                    document.getElementById("phone").value = phoneNumber;
+                    document.getElementById("name").value = list[el.value].label;
+                }
+            }
+            function warrantyCheck(check) {
+                if(check.checked) {
+                    document.getElementById("bill").removeAttribute("disabled", "");
+                } else {
+                    document.getElementById("bill").setAttribute("disabled", "");
+                }
+            }
+            function autoDash(el) {
+                if(el.value.length==3||el.value.length==7) {
+                    el.value += "-";
+                }
+            }
+        </script>
+        <style>
+            body {
+                height:100vh;
+                width:100vw;
+                margin: 0 auto;
+                display:grid;
+                align-items:center;
+                place-items:center;
+                background:rgba(0,0,0,0.8);
+            }
+            form.orderForm {
+                height:70vh;
+                width:50vw;
+                margin:auto;
+                text-align:center;
+                background:rgba(255,255,255,1);
+                border-radius:2vh;
+                border:1px solid black;
+            }
+            form.orderForm label {
+                margin:auto;
+                padding:1vh;
+            }
+            .formPart {
+                border:1px solid black;
+            }
+        </style>
+    </head>
+    <body>
+        <form class="orderForm">
+            <br><p class="formPart">Klient:
+                <br><label>ID:<input placeholder="Wybierz Klienta" list="customer-name" id="customer-choice" name="customer-choice" onchange="choose(this);"></label><br><br>
+                <label>Imię i Nazwisko:<input placeholder="Imię i nazwisko" onchange="clearId();" type="text" id="name" name="name"></label><br><br>
+                <label>Telefon:<input placeholder="123-123-123" minlength=11 maxlength=11 pattern="\d{3}[\-]\d{3}[\-]\d{3}" onkeyup="autoDash(this);" onchange="clearId();" type="text" id="phone" name="phone" oninvalid="this.setCustomValidity('000-000-000')" oninput="this.setCustomValidity('')"></label><br><br>
+            </p>
+            <p class="formPart">Sprzęt:
+                <br><label>Typ:<input placeholder="Laptop/Drukarka?" list="type-list" id="type-choice" name="type-choice"></label><br><br>
+                <label>Producent:<input placeholder="Asus/Dell/Hp/Ricoh" type="text" id="brand" name="brand"></label><br><br>
+                <label>Model:<input placeholder="R554J/deskjet 3835" type="text" id="model" name="model"></label><br><br>
+                <label>Dodatkowe wyposażenie:<input placeholder="Zasilacz, kabel USB?" type="text" id="additional" name="additional"></label><br><br>
+                <label for="warranty"><input type="checkbox" id="warranty" name="warranty" onchange="warrantyCheck(this);">Naprawa gwarancyjna</label><br><br>
+                <label>Numer rachunku/faktury:<input placeholder="Numer rachunku" type="text" id="bill" name="bill" disabled></label><br><br>
+                <label>Opis problemu: <textarea placeholder="Zachowanie sprzętu/ okoliczności występowania problemu" id="problem" name="problem" style="width:95%;height:15%;"></textarea></label>
+            </p>
+            <input type="submit" value="Dodaj naprawę"><input type="reset" value="wyczyść formularz">
+            <datalist id="customer-name">
+                <option value="1" label="Mateusz Kaźmierczak">696-413-165
+                <option value="2" label="Anna Kaźmierczak">321-123-912
+                <option value="3" label="Jarosław Nowak">123-321-132
+                <option value="4" label="Marta Nowak">123-321-132
+                <option value="5" label="Piotr Kowalski">123-321-132
+                <option value="6" label="Mateusz Kaźmierczak">696-413-165
+                <option value="7" label="Anna Kaźmierczak">321-123-912
+                <option value="8" label="Jarosław Nowak">123-321-132
+                <option value="9" label="Marta Nowak">123-321-132
+                <option value="10" label="Piotr Kowalski">123-321-132
+                <option value="11" label="Mateusz Kaźmierczak">696-413-165
+                <option value="12" label="Anna Kaźmierczak">321-123-912
+                <option value="13" label="Jarosław Nowak">123-321-132
+                <option value="14" label="Marta Nowak">123-321-132
+                <option value="15" label="Piotr Kowalski">123-321-132
+            </datalist>
+            <datalist id="type-list">
+                <option value="Notebook"></option>
+                <option value="Drukarka"></option>
+                <option value="Tablet/Telefon"></option>
+                <option value="Dysk zewnętrzny/Pamięć flash"></option>
+                <option value="Inne"></option>
+            </datalist>
+        </form>
+    </body>
+</html>
