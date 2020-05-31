@@ -161,3 +161,13 @@ form.orderForm label {
     overflow:auto;
     border:1.5px dashed white;
 }
+div[name='hide7'], div[name='hide8'] {
+    display:none;
+}
+label, li {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: -moz-none;
+    -o-user-select: none;
+    user-select: none;
+}

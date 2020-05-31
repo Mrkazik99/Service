@@ -6,7 +6,7 @@ function getClients() {
         }
     };
     console.log("getting users");
-    xmlhttp.open("GET", "getClients.php",true);
+    xmlhttp.open("GET", "getClients.php", true);
     xmlhttp.send();
 }
 function drawNav () {

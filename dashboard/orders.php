@@ -12,11 +12,12 @@
     <title>Serwis</title>
     <meta charset="utf-8">
     <script src="/serwis/assets/js/sweetalerts.js"></script>
+    <script src="/serwis/assets/js/jquerry.js"></script>
     <script src="/serwis/assets/js/searchEngine.js"></script>
     <link rel="stylesheet" href="/serwis/assets/css/main.css">
 </head>
 
-<body id="fullscreen" onload="drawNav();">
+<body id="fullscreen">
     <?php
         require_once("nav.html");
         require_once("checkErrors.php");
@@ -26,9 +27,9 @@
         <div id="sorting">
             <input type="text" placeholder="Wpisz szukaną frazę" id="search" onkeyup="research(this.value);">
             <button>Od najnowszych</button>
-            <button>Od najstarszych</button>
-            <button></button>
-            <button></button>
+            <button>Od najstarszych</button><br>
+            <label for="stat7">Pokaż odebrane</label><input type="checkbox" onchange="stat7(this);" id="stat7" class="check-slider"><br>
+            <label for="stat8">Pokaż zutylizowane</label><input type="checkbox" onchange="stat8(this);" id="stat8" class="check-slider">
         </div>
         <div id="result">
             <?php
@@ -44,13 +45,24 @@
                     8=> 'zutylizowane'
                 );
                 if(!isset($_COOKIE['sort'])) {
-                    $stmt = $pdo->prepare("SELECT * FROM orders WHERE orderstatus!=7 AND orderstatus!=6 ORDER BY date1 desc");
+                    $stmt = $pdo->prepare("SELECT * FROM orders ORDER BY date1 desc");
                 }
                 $stmt->execute();
                 $i=1;
                 if($stmt->rowCount() >0) {
                     foreach($stmt as $orders) {
-                        echo '<div class="order">' . $i++ . '.<br> Pan/Pani: ' . $result[$orders['client']-1]['name'] . '<br>Telefon: ' . $result[$orders['client']-1]['phone'] . ' <br>Sprzęt: ' . $orders['brand'] . ' ' . $orders['model'] . ' ' . $orders['sn'] . '<br>Status: ' . $statuses[$orders['orderstatus']] . '<br><section class="expired"> Dni od przyjęcia: ' . round((strtotime($now)-strtotime($orders['date1']))/(60*60*24)) . '</section> Data przyjęcia: ' . $orders['date1'] . ' <a href="order.php?id='.$orders['id'].'">Przejdź</a>' . '<br><br></div>';
+                        switch($orders['orderstatus']) {
+                            case 7:
+                                echo '<div class="order" name="hide7">';
+                                break;
+                            case 8: 
+                                echo '<div class="order" name="hide8">';
+                                break;
+                            default:
+                                echo '<div class="order">';
+                                break;
+                        }
+                        echo 'Pan/Pani: ' . $result[$orders['client']-1]['name'] . '<br>Telefon: ' . $result[$orders['client']-1]['phone'] . ' <br>Sprzęt: ' . $orders['brand'] . ' ' . $orders['model'] . ' ' . $orders['sn'] . '<br>Status: ' . $statuses[$orders['orderstatus']] . '<br><section class="expired"> Dni od przyjęcia: ' . round((strtotime($now)-strtotime($orders['date1']))/(60*60*24)) . '</section> Data przyjęcia: ' . $orders['date1'] . ' <a href="order.php?id='.$orders['id'].'">Przejdź</a>' . '<br><br></div>';
                     }
                 } else {
                     echo 'Nie znaleziono aktywnych serwisów';
@@ -59,6 +71,12 @@
             ?>
         </div>
     </div>
+    <script>
+        document.body.onload = function() {
+            checkSearch();
+            drawNav();
+        }
+    </script>
 </body>
 
 </html>
