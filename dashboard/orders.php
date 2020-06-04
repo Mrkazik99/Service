@@ -26,8 +26,8 @@
     <div id="main-container">
         <div id="sorting">
             <input type="text" placeholder="Wpisz szukaną frazę" id="search" onkeyup="research(this.value);">
-            <button>Od najnowszych</button>
-            <button>Od najstarszych</button><br>
+            <button onclick='document.cookie="sort=";window.location.reload(true);'>Od najnowszych</button>
+            <button onclick='document.cookie="sort=asc";window.location.reload(true);'>Od najstarszych</button><br>
             <label for="stat7">Pokaż odebrane</label><input type="checkbox" onchange="stat7(this);" id="stat7" class="check-slider"><br>
             <label for="stat8">Pokaż zutylizowane</label><input type="checkbox" onchange="stat8(this);" id="stat8" class="check-slider">
         </div>
@@ -44,8 +44,10 @@
                     7=> 'odebrane',
                     8=> 'zutylizowane'
                 );
-                if(!isset($_COOKIE['sort'])) {
+                if(!isset($_COOKIE['sort'])||$_COOKIE['sort']=="") {
                     $stmt = $pdo->prepare("SELECT * FROM orders ORDER BY date1 desc");
+                } else {
+                    $stmt = $pdo->prepare("SELECT * FROM orders ORDER BY date1 asc");
                 }
                 $stmt->execute();
                 $i=1;
@@ -62,7 +64,7 @@
                                 echo '<div class="order">';
                                 break;
                         }
-                        echo 'Pan/Pani: ' . $result[$orders['client']-1]['name'] . '<br>Telefon: ' . $result[$orders['client']-1]['phone'] . ' <br>Sprzęt: ' . $orders['brand'] . ' ' . $orders['model'] . ' ' . $orders['sn'] . '<br>Status: ' . $statuses[$orders['orderstatus']] . '<br><section class="expired"> Dni od przyjęcia: ' . round((strtotime($now)-strtotime($orders['date1']))/(60*60*24)) . '</section> Data przyjęcia: ' . $orders['date1'] . ' <a href="order.php?id='.$orders['id'].'">Przejdź</a>' . '<br><br></div>';
+                        echo 'Pan/Pani: ' . $result[$orders['client']-1]['name'] . '<br>Telefon: ' . $result[$orders['client']-1]['phone'] . ' <br>Sprzęt: ' . $orders['brand'] . ' ' . $orders['model'] . '<br>Wyposażenie: ' . $orders['additional'] . '<br>Status: ' . $statuses[$orders['orderstatus']] . '<br><section class="expired"> Dni od przyjęcia: ' . round((strtotime($now)-strtotime($orders['date1']))/(60*60*24)) . '</section> Data przyjęcia: ' . $orders['date1'] . ' <a href="order.php?id='.$orders['id'].'">Przejdź</a>' . '<br><br></div>';
                     }
                 } else {
                     echo 'Nie znaleziono aktywnych serwisów';

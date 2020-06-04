@@ -25,7 +25,7 @@ function drawNav () {
         el.setAttribute("selected", "");
         el.parentNode.style.backgroundColor="#29abe2";
         el.parentNode.parentNode.classList.add("nav-active");
-    } else {
+    } else if(href[0]!='order') {
         var el = document.getElementById(href[0]);
         el.classList.add("nav-active");
         el.parentNode.setAttribute('href', '#');
@@ -36,6 +36,9 @@ function hrefTo(id) {
 }
 function destroyView() {
     document.getElementById("addView").remove();
+}
+function count() {
+    alert(document.getElementsByClassName('client').length);
 }
 function addOrder() {
     var asd = document.createElement("div");

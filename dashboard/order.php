@@ -20,8 +20,27 @@
             require_once("nav.html");
             require_once("checkErrors.php");
         ?>
-        <div id="main-container">
-            poprawka1231224121231
+        <div id="main-container" style="text-align:center;">
+            <?php
+                if(!isset($_GET['id'])||$_GET['id']==''||!is_numeric($_GET['id'])) {
+                    echo "Nie wybrano naprawy";
+                } else {
+                    $id = $_GET['id'];
+                    $stmt = $pdo->prepare("SELECT * FROM orders WHERE id=".$id);
+                    $stmt->execute();
+                    if($stmt->rowCount() >0) {
+                        foreach($stmt as $order) {
+echo <<<EOL
+kurwa mać siema xDDD $id
+EOL;
+                        }
+                    } else {
+                        echo 'Nie znaleziono serwisu o podanym identyfikatorze.';
+                    }
+                    $stmt->closeCursor();
+
+                }
+            ?>
         </div>
     </body>
 
