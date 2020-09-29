@@ -2,11 +2,31 @@
     font-family: 'lexend';
     src: url("LexendDeca-Regular.ttf");
 }
+@media only screen and (min-width: 1281px) {   
+    .float-left {
+        width:49%;
+        float:left;
+    }
+    .float-right {
+        width:49%;
+        float:right;
+    }
+    .float-clear {
+        width:100%;
+        float:none;
+        clear:both;
+    }
+}
+@media only screen and (max-width: 1281px) {
+    .float-left, .float-right {
+        margin-bottom:50px;
+    }
+}
 ul a, ul a:link, ul a:visited, ul a:hover, ul a:active {
     color: inherit;
     text-decoration: inherit;
     font-family:inherit;
-  }
+}
 html {
     font-family:lexend;
 }
@@ -87,19 +107,6 @@ nav ul li select option:hover{
     background:black;
     color:white;
 }
-.float-left {
-    width:49%;
-    float:left;
-}
-.float-right {
-    width:49%;
-    float:right;
-}
-.float-clear {
-    width:100%;
-    float:none;
-    clear:both;
-}
 .maxW40 {
     height:40%;
     max-height:40%;
@@ -131,12 +138,12 @@ form.orderForm label {
     background-color:#29abe2;
 }
 .right-fixed {
-    position:fixed;
-    margin-left:32vw;
     border:1px solid #29abe2;
     border-radius:2vh;
     padding:1vh;
     background-color:#22799e;
+    float:right;
+    z-index:2;
 }
 .expired {
     color:red;

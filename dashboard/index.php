@@ -11,8 +11,8 @@
     <head>
         <title>Serwis</title>
         <meta charset="utf-8">
-        <script src="/serwis/assets/js/sweetalerts.js"></script>
-        <link rel="stylesheet" href="/serwis/assets/css/main.css">
+        <script src="/service/assets/js/sweetalerts.js"></script>
+        <link rel="stylesheet" href="/service/assets/css/main.css">
     </head>
 
     <body id="fullscreen" onload="drawNav();">
@@ -27,7 +27,6 @@
                 <?php
                     $now = date('Y-m-d');
                     $past = date('Y-m-d', strtotime("-30 days"));
-                    echo $past.'<br>';
                     $stmt = $pdo->prepare('SELECT * FROM orders WHERE date1<\''.$past.'\' AND (orderstatus!=7 OR orderstatus!=8) ORDER BY date1 asc');
                     $stmt->execute();
                     if($stmt->rowCount()<1) {
@@ -43,7 +42,7 @@
             <div class="float-right maxW40">
                 <h3 class="right-fixed">Ostatnio dodane</h3>
                 <?php
-                    $stmt = $pdo->prepare('SELECT * FROM orders WHERE orderstatus!=7 OR orderstatus!=8 ORDER BY date1 desc');
+                    $stmt = $pdo->prepare('SELECT * FROM orders WHERE orderstatus!=7 OR orderstatus!=8 ORDER BY date1 desc, id desc');
                     $stmt->execute();
                     if($stmt->rowCount()<1) {
                         echo 'Nie ma żdanych serwisów.';

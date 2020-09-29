@@ -1,14 +1,12 @@
 <!DOCTYPE html>
-<script src="/serwis/assets/js/nav.js"></script>
+<script src="/service/assets/js/nav.js"></script>
 <nav>
     <ul>
         <li class="nav-button" id="new_order">Dodaj zgłoszenie</li>
         <a href="index.php"><li class="nav-button" id="dashboard">Strona główna</li></a>
         <a href="orders.php"><li class="nav-button" id="orders">Kartoteka napraw</li></a>
         <a href="customers.php"><li class="nav-button" id="customers">Klienci</li></a>
-        <a href="components.php"><li class="nav-button" id="components">Magazyn części</li></a>
         <a href="service_info.php"><li class="nav-button" id="service_info">Dane serwisu</li></a>
         <a href="#"><li class="nav-button">Wyloguj mnie!</li></a> <!--later set href to logout.php-->
-        <li class="nav-button" style="position: absolute"><select onchange="hrefTo(this.value);" onmouseover="this.size=this.length;this.classList.add('openned')" onmouseout="this.size=1;this.classList.remove('openned')"><option value="all_orders" id="all_orders">Wszystkie serwisy</option><option value="faq" id="faq">FAQ</option><option value="backup" id="backup">Kopia kartoteki napraw</option><option value="support_contact" id="support_contact">Wsparcie techniczne</option><option selected disabled>Pozostałe opcje</opciotn></select></li>
     </ul>
 </nav>

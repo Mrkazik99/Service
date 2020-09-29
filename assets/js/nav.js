@@ -41,16 +41,16 @@ function count() {
     alert(document.getElementsByClassName('client').length);
 }
 function addOrder() {
-    var asd = document.createElement("div");
-    asd.setAttribute("style", "z-index:99;background:rgba(0,0,0,0.8);height:100vh;width:100vw;position:absolute;display:grid;cursor:pointer;");
-    asd.id="addView";
+    var formWindow = document.createElement("div");
+    formWindow.setAttribute("style", "z-index:99;background:rgba(0,0,0,0.8);height:100vh;width:100vw;position:absolute;display:grid;cursor:pointer;");
+    formWindow.id="addView";
     var form = document.createElement("form");
     form.classList.add("orderForm");
     form.setAttribute("method", "post");
     form.setAttribute("action", "new.php");
-    form.innerHTML = '<br><p class="formPart">Klient:<br><label>ID:<input placeholder="Wybierz Klienta" list="customer-name" id="customer-choice" name="customer-choice" oninput="choose(this);"></label><br><br><label>Imię i Nazwisko:<input placeholder="Imię i nazwisko" onchange="clearId();" type="text" id="name" name="name" required></label><br><br><label>Telefon:<input placeholder="123-123-123" minlength=11 maxlength=11 pattern="\\d{3}[\\-]\\d{3}[\\-]\\d{3}" onkeyup="autoDash(this);" onchange="clearId();" type="text" id="phone" name="phone" oninvalid="this.setCustomValidity("000-000-000")" oninput="this.setCustomValidity("")" required></label><br><br></p><p class="formPart">Sprzęt:<br><label>Typ:<input placeholder="Laptop/Drukarka?" list="type-list" id="type-choice" name="type-choice" required></label><br><br><label>Producent:<input placeholder="Asus/Dell/Hp/Ricoh" type="text" id="brand" name="brand" required></label><br><br><label>Model:<input placeholder="R554J/deskjet 3835" type="text" id="model" name="model" required></label><br><br><label>Dodatkowe wyposażenie:<input placeholder="Zasilacz, kabel USB?" type="text" id="additional" name="additional" required></label><br><br><label for="warranty"><input type="checkbox" id="warranty" name="warranty" onchange="warrantyCheck(this);">Naprawa gwarancyjna</label><br><br><label>Numer rachunku/faktury:<input placeholder="Numer rachunku" type="text" id="bill" name="bill" required disabled></label><br><br><label>Opis problemu: <textarea required placeholder="Zachowanie sprzętu/ okoliczności występowania problemu" id="problem" name="problem" style="width:95%;height:15%;"></textarea></label></p><input type="submit" value="Dodaj naprawę"><input type="reset" value="Zamknij" onclick="destroyView();"><p id="response">'+getClients()+'</p>';
-    asd.appendChild(form);
-    document.body.prepend(asd);
+    form.innerHTML = '<br><p class="formPart">Klient:<br><label>ID:<input placeholder="Wybierz Klienta" list="customer-name" id="customer-choice" name="customer-choice" oninput="choose(this);"></label><br><br><label>Imię i Nazwisko:<input placeholder="Imię i nazwisko" onchange="clearId();" type="text" id="name" name="name" required></label><br><br><label>Telefon:<input placeholder="123-123-123" minlength=11 maxlength=11 pattern="\\d{3}[\\-]\\d{3}[\\-]\\d{3}" onkeyup="autoDash(this);" onchange="clearId();" type="text" id="phone" name="phone" oninvalid="this.setCustomValidity("000-000-000")" oninput="this.setCustomValidity("")" required></label><br><br></p><p class="formPart">Sprzęt:<br><label>Typ:<input placeholder="Notbook/Drukarka" list="type-list" id="type-choice" name="type-choice" required></label><br><br><label>Producent:<input placeholder="Asus/Dell/Hp/Ricoh" type="text" id="brand" name="brand" required></label><br><br><label>Model:<input placeholder="R554J/deskjet 3835" type="text" id="model" name="model" required></label><br><br><label>Dodatkowe wyposażenie:<input placeholder="Zasilacz, kabel USB?" type="text" id="additional" name="additional" required></label><br><br><label for="warranty"><input type="checkbox" id="warranty" name="warranty" onchange="warrantyCheck(this);">Naprawa gwarancyjna</label><br><br><label>Numer rachunku/faktury:<input placeholder="Numer rachunku" type="text" id="bill" name="bill" required disabled></label><br><br><label>Opis problemu: <textarea required placeholder="Zachowanie sprzętu/ okoliczności występowania problemu" id="problem" name="problem" style="width:95%;height:15%;"></textarea></label></p><input type="submit" value="Dodaj naprawę"><input type="reset" value="Zamknij" onclick="destroyView();"><p id="response">'+getClients()+'</p>';
+    formWindow.appendChild(form);
+    document.body.prepend(formWindow);
 }
 function clearId() {
     document.getElementById("customer-choice").value="";

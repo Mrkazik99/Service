@@ -11,10 +11,10 @@
 <head>
     <title>Serwis</title>
     <meta charset="utf-8">
-    <script src="/serwis/assets/js/sweetalerts.js"></script>
-    <script src="/serwis/assets/js/jquerry.js"></script>
-    <script src="/serwis/assets/js/searchEngine.js"></script>
-    <link rel="stylesheet" href="/serwis/assets/css/main.css">
+    <script src="/service/assets/js/sweetalerts.js"></script>
+    <script src="/service/assets/js/jquerry.js"></script>
+    <script src="/service/assets/js/searchEngine.js"></script>
+    <link rel="stylesheet" href="/service/assets/css/main.css">
 </head>
 
 <body id="fullscreen">
@@ -44,10 +44,14 @@
                     7=> 'odebrane',
                     8=> 'zutylizowane'
                 );
+                $iswarranty = array(
+                    0=> 'nie',
+                    1=> 'tak'
+                );
                 if(!isset($_COOKIE['sort'])||$_COOKIE['sort']=="") {
-                    $stmt = $pdo->prepare("SELECT * FROM orders ORDER BY date1 desc");
+                    $stmt = $pdo->prepare("SELECT * FROM orders ORDER BY date1 desc, id desc");
                 } else {
-                    $stmt = $pdo->prepare("SELECT * FROM orders ORDER BY date1 asc");
+                    $stmt = $pdo->prepare("SELECT * FROM orders ORDER BY date1 asc, id asc");
                 }
                 $stmt->execute();
                 $i=1;
@@ -64,7 +68,7 @@
                                 echo '<div class="order">';
                                 break;
                         }
-                        echo 'Pan/Pani: ' . $result[$orders['client']-1]['name'] . '<br>Telefon: ' . $result[$orders['client']-1]['phone'] . ' <br>Sprzęt: ' . $orders['brand'] . ' ' . $orders['model'] . '<br>Wyposażenie: ' . $orders['additional'] . '<br>Status: ' . $statuses[$orders['orderstatus']] . '<br><section class="expired"> Dni od przyjęcia: ' . round((strtotime($now)-strtotime($orders['date1']))/(60*60*24)) . '</section> Data przyjęcia: ' . $orders['date1'] . ' <a href="order.php?id='.$orders['id'].'">Przejdź</a>' . '<br><br></div>';
+                        echo 'Pan/Pani: ' . $result[$orders['client']-1]['name'] . '<br>Telefon: ' . $result[$orders['client']-1]['phone'] . ' <br>Sprzęt: ' . $orders['brand'] . ' ' . $orders['model'] . '<br>Wyposażenie: ' . $orders['additional'] . '<br>Gwarancyjny: ' . $iswarranty[$orders['warranty']] . '<br>Status: ' . $statuses[$orders['orderstatus']] . '<br><section class="expired"> Dni od przyjęcia: ' . round((strtotime($now)-strtotime($orders['date1']))/(60*60*24)) . '</section> Data przyjęcia: ' . $orders['date1'] . ' <a href="order.php?id='.$orders['id'].'">Przejdź</a>' . '<br><br></div>';
                     }
                 } else {
                     echo 'Nie znaleziono aktywnych serwisów';

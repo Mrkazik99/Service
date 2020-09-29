@@ -1,7 +1,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <script src="/serwis/assets/js/sweetalerts.js"></script>
+        <script src="/service/assets/js/sweetalerts.js"></script>
         <script>
             function clearId() {
                 document.getElementById("customer-choice").value="";
@@ -64,7 +64,7 @@
                 <label>Telefon:<input placeholder="123-123-123" minlength=11 maxlength=11 pattern="\d{3}[\-]\d{3}[\-]\d{3}" onkeyup="autoDash(this);" onchange="clearId();" type="text" id="phone" name="phone" oninvalid="this.setCustomValidity('000-000-000')" oninput="this.setCustomValidity('')"></label><br><br>
             </p>
             <p class="formPart">Sprzęt:
-                <br><label>Typ:<input placeholder="Laptop/Drukarka?" list="type-list" id="type-choice" name="type-choice"></label><br><br>
+                <br><label>Typ:<input placeholder="Notebook/Drukarka" list="type-list" id="type-choice" name="type-choice"></label><br><br>
                 <label>Producent:<input placeholder="Asus/Dell/Hp/Ricoh" type="text" id="brand" name="brand"></label><br><br>
                 <label>Model:<input placeholder="R554J/deskjet 3835" type="text" id="model" name="model"></label><br><br>
                 <label>Dodatkowe wyposażenie:<input placeholder="Zasilacz, kabel USB?" type="text" id="additional" name="additional"></label><br><br>

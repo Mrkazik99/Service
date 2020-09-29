@@ -11,8 +11,8 @@
     <head>
         <title>Serwis</title>
         <meta charset="utf-8">
-        <script src="/serwis/assets/js/sweetalerts.js"></script>
-        <link rel="stylesheet" href="/serwis/assets/css/main.css">
+        <script src="/service/assets/js/sweetalerts.js"></script>
+        <link rel="stylesheet" href="/service/assets/css/main.css">
     </head>
 
     <body id="fullscreen" onload="drawNav();">
