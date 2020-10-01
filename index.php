@@ -31,7 +31,7 @@
                 Toast.fire({
                     icon: 'info',
                     title: 'Ta strona wykorzystuje pliki cookies.',
-                    html: 'Kontynując korzystanie z naszej aplikacji akceptujesz warunki <a href="/serwis/reg.html">regulaminu</a>.'
+                    html: 'Kontynując korzystanie z naszej aplikacji akceptujesz warunki <a href="/service/reg.html">regulaminu</a>.'
                 });
             }
         });
