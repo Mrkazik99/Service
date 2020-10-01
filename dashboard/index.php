@@ -27,7 +27,7 @@
                 <?php
                     $now = date('Y-m-d');
                     $past = date('Y-m-d', strtotime("-30 days"));
-                    $stmt = $pdo->prepare('SELECT * FROM orders WHERE date1<\''.$past.'\' AND (orderstatus!=7 OR orderstatus!=8) ORDER BY date1 asc');
+                    $stmt = $pdo->prepare('SELECT * FROM orders WHERE date1<\''.$past.'\' AND (orderstatus!=7 AND orderstatus!=8) ORDER BY date1 asc');
                     $stmt->execute();
                     if($stmt->rowCount()<1) {
                         echo 'Nie ma przeterminowanych serwisów.';
@@ -42,7 +42,7 @@
             <div class="float-right maxW40">
                 <h3 class="right-fixed">Ostatnio dodane</h3>
                 <?php
-                    $stmt = $pdo->prepare('SELECT * FROM orders WHERE orderstatus!=7 OR orderstatus!=8 ORDER BY date1 desc, id desc');
+                    $stmt = $pdo->prepare('SELECT * FROM orders WHERE orderstatus!=7 AND orderstatus!=8 ORDER BY date1 desc, id desc');
                     $stmt->execute();
                     if($stmt->rowCount()<1) {
                         echo 'Nie ma żdanych serwisów.';
@@ -62,8 +62,8 @@
                     if($stmt->rowCount()<1) {
                         echo 'Brak sprzętów po diagnozie.';
                     } else {
-                        foreach($stmt as $expired) {
-                            echo 'To będzie jeden ze zdiagnozowanych serwisów.<br>';
+                        foreach($stmt as $diagnosed) {
+                            echo 'Pan/Pani: ' . $result[$diagnosed['client']-1]['name'] . '<br>Telefon: ' . $result[$diagnosed['client']-1]['phone'] . ' <br>Sprzęt: ' . $diagnosed['brand'] . ' ' . $diagnosed['model'] . '<br>Wyposażenie: ' . $diagnosed['additional'] . '<br>Diagnoza: ' . $diagnosed['diagnose'] . '<br>Data przyjęcia: ' . $diagnosed['date1'] . ' <a href="order.php?id='.$diagnosed['id'].'">Przejdź</a>' . '<br><br>';
                         }
                     }
                     $stmt->closeCursor();
@@ -78,7 +78,7 @@
                         echo 'Brak sprzętów bez diagnozy.';
                     } else {
                         foreach($stmt as $expired) {
-                            echo 'To będzie jeden z serwisów czekającyh na diagnozę.<br>';
+                            echo 'Pan/Pani: ' . $result[$expired['client']-1]['name'] . '<br>Telefon: ' . $result[$expired['client']-1]['phone'] . ' <br>Sprzęt: ' . $expired['brand'] . ' ' . $expired['model'] . '<br>Wyposażenie: ' . $expired['additional'] . '<br>Data przyjęcia: ' . $expired['date1'] . ' <a href="order.php?id='.$expired['id'].'">Przejdź</a>' . '<br><br>';
                         }
                     }
                     $stmt->closeCursor();

@@ -42,7 +42,8 @@
                     5=> 'testy',
                     6=> 'do odbioru',
                     7=> 'odebrane',
-                    8=> 'zutylizowane'
+                    8=> 'zutylizowane',
+                    9=> 'wysłane do serwisu zewnętrznego'
                 );
                 $iswarranty = array(
                     0=> 'nie',

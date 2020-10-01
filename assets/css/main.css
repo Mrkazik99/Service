@@ -16,10 +16,28 @@
         float:none;
         clear:both;
     }
+    .maxW40 {
+        height:40%;
+        max-height:40%;
+        overflow:auto;
+        border:1.5px dashed white;
+        padding:5px;
+    }
+    #single-order {
+        margin: 0 auto;
+        height:100%;
+        width:50%;
+        text-align:left;
+    }
 }
 @media only screen and (max-width: 1281px) {
-    .float-left, .float-right {
-        margin-bottom:50px;
+    .maxW40 {
+        height:60%;
+        max-height:60%;
+        overflow:auto;
+        border:1.5px dashed white;
+        margin-bottom:5vh;
+        padding:5px;
     }
 }
 ul a, ul a:link, ul a:visited, ul a:hover, ul a:active {
@@ -107,14 +125,6 @@ nav ul li select option:hover{
     background:black;
     color:white;
 }
-.maxW40 {
-    height:40%;
-    max-height:40%;
-    overflow:auto;
-    border:1.5px dashed white;
-    margin-bottom:1vh;
-    padding:5px;
-}
 #main-container {
     height:90%;
 }
@@ -177,4 +187,7 @@ label, li {
     -moz-user-select: -moz-none;
     -o-user-select: none;
     user-select: none;
+}
+.tab {
+    margin-left:5em;
 }

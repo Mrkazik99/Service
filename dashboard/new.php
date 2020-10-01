@@ -17,9 +17,9 @@
         $stmtClient->closeCursor();
     }
     if(isset($_POST['warranty'])) {
-        $stmt = $pdo->prepare('INSERT INTO orders (`type`, `brand`, `model`, `additional`, `orderstatus`, `client`, `warranty`, `billnumber`, `problem`, `date1`) VALUES ("'. $_POST['type-choice'] .'", "'. $_POST['brand'] .'", "'. $_POST['model'] .'", "'. $_POST['additional'] .'", 1, "'. $clientID .'", 1, "'. $_POST['bill'] .'", "'. $_POST['problem'] .'", "'. date('Y-m-d') .'")');
+        $stmt = $pdo->prepare('INSERT INTO orders (`type`, `brand`, `model`, `additional`, `orderstatus`, `client`, `warranty`, `billnumber`, `problem`, `date1`) VALUES ("'. $_POST['type-choice'] .'", "'. $_POST['brand'] .'", "'. $_POST['model'] .'", "'. $_POST['additional'] .'", 1, "'. $clientID .'", 1, "'. $_POST['bill'] .'", "'. $_POST['problem'] .'", now())');
     } else {
-        $stmt = $pdo->prepare('INSERT INTO orders (`type`, `brand`, `model`, `additional`, `orderstatus`, `client`, `warranty`, `problem`, `date1`) VALUES ("'. $_POST['type-choice'] .'", "'. $_POST['brand'] .'", "'. $_POST['model'] .'", "'. $_POST['additional'] .'", 1, "'. $clientID .'", 0, "'. $_POST['problem'] .'", "'. date('Y-m-d') .'")');
+        $stmt = $pdo->prepare('INSERT INTO orders (`type`, `brand`, `model`, `additional`, `orderstatus`, `client`, `warranty`, `problem`, `date1`) VALUES ("'. $_POST['type-choice'] .'", "'. $_POST['brand'] .'", "'. $_POST['model'] .'", "'. $_POST['additional'] .'", 1, "'. $clientID .'", 0, "'. $_POST['problem'] .'", now())');
     }
     $stmt->execute();
     $stmt->close;
